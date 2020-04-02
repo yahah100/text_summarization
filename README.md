@@ -1,16 +1,17 @@
-# Text summarization with the Pretrained T5  
+# Text summarization 
 
-## Pretrained T5  
-We will try out the T5 pretrained Transformer from Google. (https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html) They say it's the new a "Shared Text-To-Text Framework" for NLP which should explore the limits of transfer learning. They trained the T5 with the C4 dataset, which is a unlabeled dataset and a cleaned version of Common Crawl that is two orders of magnitude larger than Wikipedia (https://www.tensorflow.org/datasets/catalog/c4).
+## Evaluation and Dataset
+First we need a metric to evaluate our results. For textsummarisation the rouge score (https://www.aclweb.org/anthology/W04-1013.pdf) is commenly used. This metric counts the matched N-grams. 
 
-There are multiple sized versions of the T5. The biggest one has 11B Parameters, which is a lot. The large version of BERT(https://github.com/google-research/bert) has 340M Parameters. It's to big to train on the free TPU from colab, So we will use the 3B Pretrained Model.
+Then we need a large dataset which is popular so that we can compare our results. This is fast found and it’s the “cnn daily mail” dataset (https://github.com/abisee/cnn-dailymail).
+
+## Model
+After that we need a state of the art language model. The idea is to use a Transformer like Bert to get good results for text summarisation. Now we have a lot to choose from: There is Bert, GPT2, XLNET and many more. There are also higher scaled version like the t5 or even smaller models with state of the art performance like ALBERT or Robert.
+
+### t5
+I chose the t5 transformer because it was easy to use and I could use the google colab TPU to finetune a pretrained model which has 3B parameters. I got a better rouge score than a Paper from (https://arxiv.org/pdf/1902.09243.pdf) which is from 2019.
+
+### ALBERT
+Now I wanted try out Albert to see if I could results like the t5 with a much smaller Model, which has similar performance like Bert-Large with 18x fewer parameters and can be trained about 1.7x faster. (https://arxiv.org/abs/1909.11942). But the Albert model is not so easy to use for text summary. 
 
 
-## Dataset for text summarization
-We will try out the CNN DailyMail Dataset. It is the most used Dataset for text summarization.
-
-## Implementation
-There is a Tutorial Notebook on Colab which everyone can use for free.
-<a href="https://colab.research.google.com/github/google-research/text-to-text-transfer-transformer/blob/master/notebooks/t5-trivia.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
-They programmed a nice Envirement to try out all the tfds Datasets(https://www.tensorflow.org/datasets). We are lucky, the CNN DailyMail Dataset is one of them. So we change the code a bit to fit the new task and finetune the model.
