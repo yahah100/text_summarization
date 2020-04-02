@@ -8,7 +8,7 @@ Then we need a large dataset which is popular so that we can compare our results
 ## Model
 After that we need a state of the art language model. The idea is to use a Transformer like Bert to get good results for text summarisation. Now we have a lot to choose from: There is Bert, GPT2, XLNET and many more. There are also higher scaled version like the t5 or even smaller models with state of the art performance like ALBERT or Robert.
 
-### t5
+### [t5](t5)
 I chose the t5 transformer because it was easy to use and I could use the google colab TPU to finetune a pretrained model which has 3B parameters. I got a better rouge score than a Paper from (https://arxiv.org/pdf/1902.09243.pdf) which is from 2019.
 
 ### ALBERT
