@@ -11,7 +11,7 @@ After that we need a state of the art language model. The idea is to use a Trans
 ### [t5](t5)
 I chose the t5 transformer because it was easy to use and I could use the google colab TPU to finetune a pretrained model which has 3B parameters. I got a better rouge score than a Paper from (https://arxiv.org/pdf/1902.09243.pdf) which is from 2019.
 
-### ALBERT
+### [ALBERT](albert)
 Now I wanted try out Albert to see if I could results like the t5 with a much smaller Model, which has similar performance like Bert-Large with 18x fewer parameters and can be trained about 1.7x faster. (https://arxiv.org/abs/1909.11942). But the Albert model is not so easy to use for text summary. 
 
 
