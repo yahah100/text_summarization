@@ -8,17 +8,20 @@ class MySentencePiecer:
         super().__init__()
 
         # train Sentence Piece with train.tsv
-        spm_model_name = "../models/spm_train.model"
+        spm_model_name = "../models/spm_train"
+        spm_file_name = "../models/spm_train.model"
+
         spm_train_file_name = "../data/train.tsv"
 
-        if not os.path.exists(spm_model_name) or force_update:
+        if not os.path.exists(spm_file_name) or force_update:
+            print("training model")
             spm.SentencePieceTrainer.Train(
                     '--input=' + os.path.join(spm_train_file_name) +
                     ' --model_prefix=' + os.path.join(spm_model_name) +
                     ' --vocab_size=%d' % vocab_size)
 
         self.sp_model = spm.SentencePieceProcessor()
-        self.sp_model.Load(spm_model_name)
+        self.sp_model.Load(spm_file_name)
         self.vocab = {self.sp_model.IdToPiece(i): i for i in range(self.sp_model.GetPieceSize())}
         self.vocab_list = list(self.vocab.keys())
 
