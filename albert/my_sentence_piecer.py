@@ -10,7 +10,7 @@ class MySentencePiecer:
         # train Sentence Piece with train.tsv
         spm_model_name = "../models/spm_train.model"
         spm_train_file_name = "../data/train.tsv"
-
+        self.vocab_size = vocab_size
         if not os.path.exists(spm_model_name) or force_update:
             spm.SentencePieceTrainer.Train(
                     '--input=' + os.path.join(spm_train_file_name) +

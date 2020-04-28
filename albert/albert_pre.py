@@ -104,6 +104,6 @@ class AlbertPre:
 if __name__ == "__main__":
     # execute only if run as a script
     alpert_pre = AlbertPre()
-    train_df, val_df, test_df = alpert_pre.load_data()
+    _, val_df, _ = alpert_pre.load_data()
 
-    alpert_pre.compute_and_save_df(test_df, "test")
+    alpert_pre.compute_and_save_df(val_df, "val")
