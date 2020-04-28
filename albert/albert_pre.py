@@ -5,7 +5,7 @@ import numpy as np
 from flair.data import Sentence
 from flair.embeddings import BertEmbeddings, DocumentPoolEmbeddings
 
-from albert.my_sentence_piecer import MySentencePiecer
+from my_sentence_piecer import MySentencePiecer
 from segtok.segmenter import split_single
 
 
@@ -85,8 +85,8 @@ class AlbertPre:
             if chunk != 0:
                 chunks_str = "_" + str(chunk)
             np.save(str(path + "/article" + chunks_str + ".npy"), article_np)
-            np.save(str(path + "/n_highlights" + chunks_str + ".npy"), n_article_list)
-            np.save(str(path + "/n_articles" + chunks_str + ".npy"), n_highlight_list)
+            np.save(str(path + "/n_highlights" + chunks_str + ".npy"), n_highlight_list)
+            np.save(str(path + "/n_articles" + chunks_str + ".npy"), n_article_list)
             np.save(str(path + "/highlights" + chunks_str + ".npy"), highlight_list)
 
     @staticmethod

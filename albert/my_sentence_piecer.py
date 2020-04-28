@@ -10,7 +10,7 @@ class MySentencePiecer:
         # train Sentence Piece with train.tsv
         spm_model_name = "../models/spm_train.model"
         spm_train_file_name = "../data/train.tsv"
-        self.vocab_size = vocab_size
+
         if not os.path.exists(spm_model_name) or force_update:
             spm.SentencePieceTrainer.Train(
                     '--input=' + os.path.join(spm_train_file_name) +
@@ -24,6 +24,7 @@ class MySentencePiecer:
 
         self.eos_token = self.sp_model.eos_id()
         self.bos_token = self.sp_model.bos_id()
+        self.vocab_size = len(self.vocab_list)
 
     def get_real_text_from_ids(self, tokens):
         text = ""
