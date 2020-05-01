@@ -98,7 +98,7 @@ class AlbertPre:
         n_articles = np.load(str(path + "/n_articles" + ".npy"), allow_pickle=True)
         highlights = np.load(str(path + "/highlights" + ".npy"), allow_pickle=True)
 
-        return article_np, n_articles, n_highlights, highlights
+        return article_np, n_articles, highlights, n_highlights
 
 
 if __name__ == "__main__":
