@@ -50,44 +50,36 @@ class AlbertPre:
 
         return arr_embedding
 
-    def compute_and_save_df(self, ds, name, size_chunks=20000):
+    def compute_and_save_df(self, ds, name):
+
+        path = "../data/%s" % (name)
+        if not os.path.exists(path):
+            os.mkdir(path)
         len_ds = len(ds)
-        chunks = int(len_ds / size_chunks)
-        for chunk in range(chunks+1):
-            part_df = ds.iloc[:][(chunk*size_chunks):(size_chunks + chunk*size_chunks)]
-            part_len = len(part_df)
+        article_np = np.memmap(str(path + "/articles.npy"), dtype=np.float32,
+                      mode='w+', shape=(len_ds, 30, 3072))
 
-            article_np = np.zeros((part_len, 30, 3072))
+        highlight_list = []
+        n_highlight_list = []
+        n_article_list = []
 
-            highlight_list = []
-            n_highlight_list = []
-            n_article_list = []
+        for i, (article, highlight) in ds.iterrows():
+            article_sent = self.split_in_sentences(article)
+            n_areticle = len(article_sent)
+            article_np[i] = self.embed_sentences(article_sent)
 
-            for i, (article, highlight) in ds.iterrows():
-                article_sent = self.split_in_sentences(article)
-                n_areticle = len(article_sent)
-                article_np[i] = self.embed_sentences(article_sent)
+            highlight_ids = np.array(self.sentence_piecer.get_ids_from_vocab(highlight))[:self.MAX_WORD_N]
 
-                highlight_ids = np.array(self.sentence_piecer.get_ids_from_vocab(highlight))[:self.MAX_WORD_N]
+            highlight_list.append(highlight_ids)
+            n_highlight_list.append(highlight_ids.shape[0])
+            n_article_list.append(n_areticle)
 
-                highlight_list.append(highlight_ids)
-                n_highlight_list.append(highlight_ids.shape[0])
-                n_article_list.append(n_areticle)
+            if (i % 1000) == 0:
+                print("computed [%d/%d]" % (i, len_ds))
 
-                if (i % 1000) == 0:
-                    print("computed [%d/%d/%d]" % (chunk, i, len_ds))
-
-            path = "../data/%s" % (name)
-            if not os.path.exists(path):
-                os.mkdir(path)
-
-            chunks_str = ""
-            if chunk != 0:
-                chunks_str = "_" + str(chunk)
-            np.save(str(path + "/article" + chunks_str + ".npy"), article_np)
-            np.save(str(path + "/n_highlights" + chunks_str + ".npy"), n_highlight_list)
-            np.save(str(path + "/n_articles" + chunks_str + ".npy"), n_article_list)
-            np.save(str(path + "/highlights" + chunks_str + ".npy"), highlight_list)
+        np.save(str(path + "/n_highlights" + ".npy"), n_highlight_list)
+        np.save(str(path + "/n_articles" + ".npy"), n_article_list)
+        np.save(str(path + "/highlights" + ".npy"), highlight_list)
 
     @staticmethod
     def load_np_files(name):
@@ -104,6 +96,6 @@ class AlbertPre:
 if __name__ == "__main__":
     # execute only if run as a script
     alpert_pre = AlbertPre()
-    _, _, test_df = alpert_pre.load_data()
+    train_df, _, _ = alpert_pre.load_data()
 
-    alpert_pre.compute_and_save_df(test_df, "test")
+    alpert_pre.compute_and_save_df(train_df, "train")
