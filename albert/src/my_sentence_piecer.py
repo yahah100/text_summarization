@@ -9,9 +9,9 @@ class MySentencePiecer:
 
         # train Sentence Piece with train.tsv
         spm_model_name = "../models/spm_train"
-        spm_file_name = "../models/spm_train.model"
+        spm_file_name = "../../models/spm_train.model"
 
-        spm_train_file_name = "../data/train.tsv"
+        spm_train_file_name = "../../data/train.tsv"
 
         if not os.path.exists(spm_file_name) or force_update:
             print("training model")
