@@ -3,7 +3,7 @@ albert_base_v2/*
 export/*
 models/*
 .idea/*
-
+t5/data/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
