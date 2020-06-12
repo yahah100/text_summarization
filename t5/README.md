@@ -12,7 +12,7 @@ We will try out the CNN DailyMail Dataset. It is the most used Dataset for text 
 ## Implementation
 There are 3 Types of implementations, first the implementation from google, then a tensorflow and pytorch implementation, which are based on the huggingface library. The ones based on the huggingface library have the plus points, that they are better expandable or customizable. 
 
-###  [Google Implemenation](text_summary_with_t5.ipynb) 
+###  [Google Implemenation](google_text_summary_with_t5.ipynb) 
 They programmed a nice environment to try out all the tfds Datasets(https://www.tensorflow.org/datasets). We are lucky, the CNN DailyMail Dataset is one of them. So we change the code a bit to fit the new task and finetune the model.
 <a href="https://colab.research.google.com/github/google-research/text-to-text-transfer-transformer/blob/master/notebooks/t5-trivia.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
