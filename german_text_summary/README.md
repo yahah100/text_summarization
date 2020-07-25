@@ -14,9 +14,9 @@ The result rouge scores are close to the wikipedia dataset, which leads to the c
 in english caused by the data domain.  
 
 #### German CNN Daily Mail Rouge Score
-- rouge1 = 25.95, 95% confidence [25.37, 26.58]
-- rouge2 = 7.55, 95% confidence [7.15, 7.92]
-- rougeLsum = 14.76, 95% confidence [14.40, 15.09]
+- rouge1 = 31.99, 95% confidence [31.11, 32.82]
+- rouge2 = 13.15, 95% confidence [12.33, 13.98]
+- rougeLsum = 20.85, 95% confidence [20.06, 21.69]
 
 #### German Wikipedia Rouge Score
 - rouge1 = 23.55, 95% confidence [22.47, 24.62]
