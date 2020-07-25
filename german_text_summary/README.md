@@ -8,10 +8,8 @@ First I tried to use the t5 model to translate the Dataset, but the translation 
 
 ## Results
 The rouge score from the translated german dataset shows that the t5 is not as good as in english. But the performance is 
-not to bad. If you look at the [german  sentences](result_german.txt) you mostly think, that they mean the right things,  
-but they have problems to get the german language right. But it is interesting to see how a translated dataset is working.
-The result rouge scores are close to the wikipedia dataset, which leads to the conclusion, that the lead of the performance 
-in english caused by the data domain.  
+still good. It takes 5 epochs but after that, the t5 is able to build good German sentences which summarize the meaning of the articles. 
+You can have a look at the results at the [german  sentences](result_german_t5base.txt).   
 
 #### German CNN Daily Mail Rouge Score
 - rouge1 = 31.99, 95% confidence [31.11, 32.82]
