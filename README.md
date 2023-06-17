@@ -1,5 +1,10 @@
 # Text summarization 
 
+## New Repository
+Text summarisation from: English - English, German - German, English - German, and German - English
+Dataset: cnn-dailymail & Sueddeutsche dataset corpus
+[https://github.com/yahah100/cross_lingual_summarization](https://github.com/yahah100/cross_lingual_summarization)
+
 ## Evaluation and Dataset
 First we need a metric to evaluate our results. For textsummarisation the rouge score (https://www.aclweb.org/anthology/W04-1013.pdf) is commenly used. This metric counts the matched N-grams. 
 
